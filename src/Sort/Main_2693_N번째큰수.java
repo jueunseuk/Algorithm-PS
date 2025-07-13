@@ -1,0 +1,54 @@
+package Sort;
+import java.util.Arrays;
+
+public class Main_2693_N번째큰수 {
+
+	public static void main(String[] args) throws Exception {
+		Reader rd = new Reader();
+		
+		int T = rd.nextInt();
+		
+		StringBuilder sb = new StringBuilder();
+		for(int t = 0; t < T; t++) {
+			int[] arr = new int[10];
+			for(int i = 0; i < 10; i++) {
+				arr[i] = rd.nextInt();
+			}
+			
+			Arrays.sort(arr);
+			
+			sb.append(arr[7]+"\n");
+		}
+
+		System.out.println(sb.toString().trim());
+	}
+
+	static class Reader {
+	    private final int SIZE = 1 << 13;
+	    private byte[] buffer = new byte[SIZE];
+	    private int index, size;
+	    
+	    int nextInt() throws Exception {
+	        int lis = 0;
+	        byte c;
+	        boolean isMinus = false;
+	        while ((c = read()) <= 32);
+	        if (c == 45) { c = read(); isMinus = true; }
+	        do lis = (lis << 3) + (lis << 1) + (c & 15);
+	        while (isnumber(c = read()));
+	        return isMinus ? ~lis + 1 : lis;
+	    }
+
+	    private boolean isnumber(byte c) {
+	        return 47 < c && c < 58;
+	    }
+
+	    private byte read() throws Exception {
+	        if (index == size) {
+	            size = System.in.read(buffer, index = 0, SIZE);
+	            if (size < 0) buffer[0] = -1;
+	        }
+	        return buffer[index++];
+	    }
+	}
+}
