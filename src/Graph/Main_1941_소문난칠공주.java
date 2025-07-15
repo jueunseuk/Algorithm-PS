@@ -28,36 +28,48 @@ public class Main_1941_소문난칠공주 {
         	}
         }
         
+        System.out.println(cnt);
 	}
 
 	private static void bfs(int i, int j) {
+		Queue<int[]> q = new ArrayDeque<>();
 		visit = new boolean[5][5];
 		
-		Queue<int[]> q = new ArrayDeque<>();
-		
-		if(matrix[i][j] == 'S') {
-			// i n j n som n yeon
-			q.offer(new int[] {i, j, 1, 0});
-		} else {
-			q.offer(new int[] {i, j, 0, 1});
-		}
+		q.offer(new int[] {i, j, matrix[i][j] == 'S' ? 1 : 0, matrix[i][j] == 'Y' ? 1 : 0});
 		visit[i][j] = true;
 		
 		while(!q.isEmpty()) {
 			int[] poll = q.poll();
 			
-			if(poll[2]+poll[3] == 7 && poll[2] > 3) {
-				cnt++;
+			if(poll[2]+poll[3] == 7) {
+				if(poll[2] > 3) {
+					cnt++;
+				}
 				continue;
 			}
+			
+			if(poll[3] >= 4) continue;
 			
 			for(int delta = 0; delta < 4; delta++) {
 				int nx = poll[0] + dx[delta];
 				int ny = poll[1] + dy[delta];
 				
+				if(rangeCheck(nx, ny) && !visit[nx][ny]) {
+					if(matrix[nx][ny] == 'S') {
+						q.offer(new int[] {nx, ny, poll[2]+1, poll[3]});
+						visit[nx][ny] = true;
+					} else {
+						q.offer(new int[] {nx, ny, poll[2], poll[3]+1});
+						visit[nx][ny] = true;
+					}
+				}
 			}
 		}
 		
+	}
+
+	private static boolean rangeCheck(int nx, int ny) {
+		return nx >= 0 && ny >= 0 && nx < 5 && ny < 5;
 	}
 
 }
