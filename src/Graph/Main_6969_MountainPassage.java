@@ -51,8 +51,6 @@ public class Main_6969_MountainPassage {
 				return;
 			}
 			
-			visit[poll[0]][poll[1]] = true;
-			
 			for(int delta = 0; delta < 4; delta++) {
 				int nx = poll[0] + dx[delta];
 				int ny = poll[1] + dy[delta];
@@ -66,6 +64,8 @@ public class Main_6969_MountainPassage {
 				} else {
 					dq.offerFirst(new int[] {nx, ny, poll[2]});
 				}
+				
+				visit[nx][ny] = true;
 			}
 		}
 		
