@@ -66,10 +66,13 @@ public class Main_23807_두단계최단경로3 {
                     long v6 = costx[C] + cand[ic][B] + cand[ib][A] + costz[A];
                     
                     long cur = Math.min(Math.min(Math.min(v1, v2), Math.min(v3, v4)), Math.min(v5, v6));
+                    
+                    if(cur >= INF) continue;
+                    
                     if (cur < ans) ans = cur;
                 }
 		
-		System.out.println(ans);
+		System.out.println(ans == INF ? -1 : ans);
 	}
 
 	private static void dijkstra(int i, long[] cost) {
