@@ -8,11 +8,11 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_14461_소가길을건너간이유7 {
-	static final long INF = Long.MAX_VALUE/4;
+	static final int INF = Integer.MAX_VALUE/2;
 	
 	static int size, t;
 	static int[][] matrix;
-	static long[][][] cost;
+	static int[][][] cost;
 	
 	static final int dx[] = {1, -1, 0, 0};
 	static final int dy[] = {0, 0, 1, -1};
@@ -25,7 +25,7 @@ public class Main_14461_소가길을건너간이유7 {
 		t = Integer.parseInt(st.nextToken());
 		
 		matrix = new int[size][size];
-		cost = new long[size][size][3];
+		cost = new int[size][size][3];
 		
 		for(int i = 0; i < size; i++) {
 			for(int j = 0; j < size; j++)
@@ -67,7 +67,7 @@ public class Main_14461_소가길을건너간이유7 {
 				
 				if(outOfRange(nx, ny)) continue;
 				
-				long nc = poll.w + t;
+				int nc = poll.w + t;
 				if(nd == 0) {
 					nc += matrix[nx][ny];
 				}
@@ -86,9 +86,9 @@ public class Main_14461_소가길을건너간이유7 {
 
 	public static class Section implements Comparable<Section> {
 		int x, y, dist;
-		long w;
+		int w;
 		
-		public Section(int x, int y, int dist, long w) {
+		public Section(int x, int y, int dist, int w) {
 			this.x = x;
 			this.y = y;
 			this.dist = dist;
@@ -97,7 +97,7 @@ public class Main_14461_소가길을건너간이유7 {
 
 		@Override
 		public int compareTo(Section o) {
-			return Long.compare(this.w, o.w);
+			return Integer.compare(this.w, o.w);
 		}
 	}
 }
