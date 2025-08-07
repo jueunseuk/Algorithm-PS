@@ -3,7 +3,6 @@ package PrefixSum;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main_15724_주지수2 {
@@ -26,14 +25,10 @@ public class Main_15724_주지수2 {
         
         int[][] sum = new int[row+1][col+1];
         for(int i = 1; i <= row; i++) {
-        	sum[i][1] = matrix[i][1];
-        }
-        for(int i = 1; i <= row; i++) {
         	for(int j = 1; j <= col; j++) {
         		sum[i][j] = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1] + matrix[i][j];
         	}
         }
-        
         
         int m = Integer.parseInt(br.readLine());
         
