@@ -27,6 +27,6 @@ public class Main_31534_현대모비스선풍기굴리기 {
         	double slope2 = b*b+x2*x2;
         	double result = (slope2-slope1)*Math.PI;
         	System.out.println(result < 0 ? -result : result);
-        } 
+        }
 	}
 }
