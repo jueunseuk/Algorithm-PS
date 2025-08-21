@@ -41,7 +41,7 @@ public class Main_5938_DaisyChainsintheField {
 			}
 		}
 		
-		System.out.println(sb.toString().trim());
+		System.out.println(sb.length() == 0 ? 0 : sb.toString().trim());
 	}
 
 	private static void bfs(int i) {
