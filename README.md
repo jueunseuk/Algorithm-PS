@@ -9,7 +9,9 @@
 <em style="font-size: 20px">Baekjoon Problem Solving Space</em>
 <br><br>
 <div align="center">
-[![Solved.ac
-프로필](http://mazassumnida.wtf/api/generate_badge?boj=junsu0825)](https://solved.ac/junsu0825)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Junsu's Jandi](http://mazandi.herokuapp.com/api?handle=junsu0825&theme=warm)
+  <a href="https://solved.ac/junsu0825">
+    <img src="http://mazassumnida.wtf/api/generate_badge?boj=junsu0825" alt="Solved.ac 프로필">
+  </a>
+  <img src="http://mazandi.herokuapp.com/api?handle=junsu0825&theme=warm" alt="Junsu's Jandi">
 </div>
 </div>
