@@ -47,7 +47,7 @@ public class Main_6850_Cows {
     	stack.push(standard);
     	
     	double sum1 = 0, sum2 = 0;
-        for(int i = 0; i < stack.size(); i++) {
+        for(int i = 0; i < stack.size()-1; i++) {
             sum1 += (double) stack.get(i).x * stack.get(i+1).y;
             sum2 += (double) stack.get(i).y* stack.get(i+1).x;
         }
