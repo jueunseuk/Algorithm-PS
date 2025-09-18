@@ -45,7 +45,7 @@ public class Main_1310_달리기코스 {
         Stack<Point> stack = new Stack<>();
         stack.push(standard);
         for(Point out : point) {
-        	while(stack.size() >= 2 && ccw(stack.get(stack.size() - 2), stack.peek(), out) < 0) {
+        	while(stack.size() >= 2 && ccw(stack.get(stack.size() - 2), stack.peek(), out) <= 0) {
                 stack.pop();
             }
             stack.push(out);
