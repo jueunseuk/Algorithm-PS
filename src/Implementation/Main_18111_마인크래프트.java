@@ -48,7 +48,7 @@ public class Main_18111_마인크래프트 {
                 }
             }
 
-            if (blocks < 0) continue; // 블록이 부족한 경우 스킵
+            if (blocks < 0) continue;
 
             if (time < timeR || (time == timeR && h > heightR)) {
             	timeR = time;
