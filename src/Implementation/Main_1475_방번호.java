@@ -23,7 +23,7 @@ public class Main_1475_방번호 {
         }
         
         int max = 0;
-        for(int i = 1; i < 9; i++) {
+        for(int i = 0; i < 9; i++) {
         	max = Math.max(max, cnt[i]);
         }
         
