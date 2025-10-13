@@ -12,7 +12,7 @@ public class Main_21세일_11508 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         int n = Integer.parseInt(br.readLine());
-        int result = 0;
+        long result = 0;
         
         Queue<Integer> q = new PriorityQueue<>(Collections.reverseOrder());
         for(int i = 0; i < n; i++) {
