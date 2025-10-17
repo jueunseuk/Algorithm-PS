@@ -22,7 +22,6 @@ public class Main_4796_캠핑 {
         	}
         	
         	sb.append("Case ").append(cnt++).append(": ").append(l * (v / p) + Math.min(l, v % p)).append("\n");
-        	
         }
 
         System.out.println(sb.toString().trim());
