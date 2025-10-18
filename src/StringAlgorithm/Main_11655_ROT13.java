@@ -19,7 +19,7 @@ public class Main_11655_ROT13 {
         	}
         }
 
-        System.out.println(sb.toString().trim());
+        System.out.println(sb);
 	}
 
 	private static char getCharacter(char c) {
