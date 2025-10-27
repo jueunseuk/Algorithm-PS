@@ -28,10 +28,8 @@ public class Main_1890_점프 {
             for(int j = 0; j < n; j++) {
                 if(dp[i][j] == 0 || (i == n-1 && j == n-1)) continue; 
                 
-                int jump = matrix[i][j];
-                
-                int ni = i + jump;
-                int nj = j + jump;
+                int ni = i + matrix[i][j];
+                int nj = j + matrix[i][j];
                 
                 if(ni < n) dp[ni][j] += dp[i][j];
                 if(nj < n) dp[i][nj] += dp[i][j];
