@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main_14680_효빈이의과외 {
-    static final int MOD = 1_000_000_007;
+    static final int MOD = 1000000007;
 
     static class Mat {
         int r, c;
@@ -65,6 +65,7 @@ public class Main_14680_효빈이의과외 {
             sum += x;
             sum %= MOD;
         }
+        
         System.out.println(sum);
     }
 }
