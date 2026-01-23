@@ -109,7 +109,6 @@ public class Main_35157_점세개돌리기 {
             sb.append(m01).append(' ').append(m11).append(' ').append(m21).append('\n');
             sb.append(m02).append(' ').append(m12).append(' ').append(m22).append('\n');
         }
-
         
         System.out.println(sb.toString().trim());
 	}
