@@ -84,5 +84,4 @@ public class Main_14940_쉬운최단거리 {
 			}
 		}
 	}
-
 }
