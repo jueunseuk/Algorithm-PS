@@ -1,4 +1,4 @@
-package PrefixSum;
+package Graph.BFS;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
