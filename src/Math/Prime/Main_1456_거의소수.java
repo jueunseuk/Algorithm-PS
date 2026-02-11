@@ -1,4 +1,4 @@
-package Math;
+package Math.Prime;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;

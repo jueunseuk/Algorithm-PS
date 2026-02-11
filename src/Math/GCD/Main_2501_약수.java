@@ -1,4 +1,4 @@
-package Math;
+package Math.GCD;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Collections;

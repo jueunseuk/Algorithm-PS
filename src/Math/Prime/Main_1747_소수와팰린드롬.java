@@ -1,20 +1,15 @@
-package Math;
+package Math.Prime;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
 
-public class Main_1990_소수인팰린드롬 {
-    static final int MAX = 10000000;
+public class Main_1747_소수와팰린드롬 {
+    static final int MAX = 1003001;
     static boolean[] prime = new boolean[MAX + 1];
     
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int a = Integer.parseInt(st.nextToken());
-        int b = Integer.parseInt(st.nextToken());
-        b = Math.min(10000000, b);
+        int n = Integer.parseInt(br.readLine());
 
         Arrays.fill(prime, true);
         prime[0] = prime[1] = false;
@@ -27,15 +22,12 @@ public class Main_1990_소수인팰린드롬 {
             }
         }
         
-        StringBuilder sb = new StringBuilder();
-        for (int i = a; i <= b; i++) {
+        for (int i = n; i <= MAX; i++) {
             if (prime[i] && isPal(i)) {
-            	sb.append(i+"\n");
+                System.out.println(i);
+                return;
             }
         }
-        
-        if(sb.length() > 0) System.out.println(sb.toString().trim());
-        System.out.println(-1);
     }
     
     private static boolean isPal(int num) {
