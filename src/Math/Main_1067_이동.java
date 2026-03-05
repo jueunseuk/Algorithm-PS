@@ -1,6 +1,7 @@
 package Math;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Main_1067_이동 {
     static class FastScanner {
@@ -90,7 +91,7 @@ public class Main_1067_이동 {
 
         int aLen = 2 * n;
         int bLen = n;
-        int need = aLen + bLen - 1; // 3N-1
+        int need = aLen + bLen - 1;
 
         int m = 1;
         while (m < need) m <<= 1;
@@ -100,13 +101,11 @@ public class Main_1067_이동 {
         double[] br = new double[m];
         double[] bi = new double[m];
 
-        // A = X || X
         for (int i = 0; i < n; i++) {
             ar[i] = x[i];
             ar[i + n] = x[i];
         }
 
-        // B = reverse(Y)
         for (int i = 0; i < n; i++) {
             br[i] = y[n - 1 - i];
         }
@@ -114,7 +113,6 @@ public class Main_1067_이동 {
         fft(ar, ai, false);
         fft(br, bi, false);
 
-        // pointwise multiply: (a * b)
         for (int i = 0; i < m; i++) {
             double rr = ar[i] * br[i] - ai[i] * bi[i];
             double ii = ar[i] * bi[i] + ai[i] * br[i];
@@ -122,14 +120,13 @@ public class Main_1067_이동 {
             ai[i] = ii;
         }
 
-        fft(ar, ai, true); // inverse FFT
+        fft(ar, ai, true);
 
         long ans = Long.MIN_VALUE;
-        // indices (N-1) .. (N-1)+(N-1) == 2N-2
         int start = n - 1;
         int end = 2 * n - 2;
         for (int idx = start; idx <= end; idx++) {
-            long val = Math.round(ar[idx]); // rounding for floating error
+            long val = Math.round(ar[idx]);
             if (val > ans) ans = val;
         }
         return ans;
