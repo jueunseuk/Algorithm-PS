@@ -8,11 +8,14 @@ public class Main {
 	public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int n = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
         
-        for(int i = 0; i < k; i++) {
-        		System.out.println(n += k);
+        StringBuilder sb = new StringBuilder();
+        for(int i = b; i >= a; i--) {
+        	sb.append(i).append(" ");
         }
+
+        System.out.println(sb.toString().trim());
 	}
 }
