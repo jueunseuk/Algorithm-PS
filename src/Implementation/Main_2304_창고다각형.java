@@ -37,17 +37,14 @@ public class Main_2304_창고다각형 {
 
         int sum = 0;
 
-        // 왼쪽 -> 최고 기둥
         int leftMax = 0;
         for (int i = minIdx; i < maxIdx; i++) {
             leftMax = Math.max(leftMax, arr[i]);
             sum += leftMax;
         }
 
-        // 최고 기둥
         sum += maxH;
 
-        // 오른쪽 -> 최고 기둥
         int rightMax = 0;
         for (int i = lastIdx; i > maxIdx; i--) {
             rightMax = Math.max(rightMax, arr[i]);
