@@ -8,13 +8,14 @@ public class Main {
 	public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0 ; i < n; i++) {
-        		sb.append((int) Math.pow(Integer.parseInt(st.nextToken()), 2)).append(" ");
-        }
+        String a = st.nextToken();
+        String b = st.nextToken();
         
-        System.out.println(sb.toString().trim());
+        if(a.length() == b.length()) {
+        	System.out.println("same");
+        } else {
+        	System.out.println(a.length() > b.length() ? a+" "+a.length() : b+" "+b.length());
+        }
 	}
 }
