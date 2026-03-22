@@ -12,7 +12,7 @@ public class Main_25827_시간구간다중업데이트 {
         
         int query = Integer.parseInt(br.readLine());
         
-        int[] diff = new int[SEC+1];
+        long[] diff = new long[SEC+1];
         
         StringTokenizer st;
         
