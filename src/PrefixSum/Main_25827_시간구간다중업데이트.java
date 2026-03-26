@@ -52,15 +52,15 @@ public class Main_25827_시간구간다중업데이트 {
         sb.append(diff[e]-diff[s-1]).append("\n");
         
         for(; q < query-1; q++) {
-        	st = new StringTokenizer(br.readLine(), " ");
-        	type = Integer.parseInt(st.nextToken());
-        	start = st.nextToken().split(":");
-        	end = st.nextToken().split(":");
-        	
-        	s = makeToSecond(start)+1;
-        	e = makeToSecond(end);
-        	
-        	sb.append(diff[e]-diff[s-1]).append("\n");
+	        	st = new StringTokenizer(br.readLine(), " ");
+	        	type = Integer.parseInt(st.nextToken());
+	        	start = st.nextToken().split(":");
+	        	end = st.nextToken().split(":");
+	        	
+	        	s = makeToSecond(start)+1;
+	        	e = makeToSecond(end);
+	        	
+	        	sb.append(diff[e]-diff[s-1]).append("\n");
         }
         
         System.out.println(sb.toString().trim());
