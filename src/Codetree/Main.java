@@ -7,15 +7,17 @@ public class Main {
 	public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        char[] input = br.readLine().toCharArray();
-        input[1] = 'a';
-        input[input.length-2] = 'a';
+        int n = Integer.parseInt(br.readLine());
         
         StringBuilder sb = new StringBuilder();
-        for(char c : input) {
-        		sb.append(c);
+        for(int i = n; i <= 100; i++) {
+        		if(i >= 90) sb.append("A ");
+        		else if(i >= 80) sb.append("B ");
+        		else if(i >= 70) sb.append("C ");
+        		else if(i >= 60) sb.append("D ");
+        		else sb.append("F ");
         }
         
-        System.out.println(sb.toString());
+        System.out.println(sb.toString().trim());
 	}
 }
