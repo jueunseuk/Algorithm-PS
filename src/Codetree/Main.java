@@ -2,6 +2,7 @@ package Codetree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
@@ -10,12 +11,12 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         
         StringBuilder sb = new StringBuilder();
-        for(int i = n; i <= 100; i++) {
-        		if(i >= 90) sb.append("A ");
-        		else if(i >= 80) sb.append("B ");
-        		else if(i >= 70) sb.append("C ");
-        		else if(i >= 60) sb.append("D ");
-        		else sb.append("F ");
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        for(int i = 0; i < n; i++) {
+        		int input = Integer.parseInt(st.nextToken());
+        		if(input % 2 == 1) continue;
+        		sb.insert(0, input);
+        		sb.insert(0, " ");
         }
         
         System.out.println(sb.toString().trim());
