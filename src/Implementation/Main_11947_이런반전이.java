@@ -15,15 +15,15 @@ public class Main_11947_이런반전이 {
         	String str = br.readLine();
         	int N = Integer.parseInt(str);
         	
-        	long goodNum = 5 * (long) Math.pow(10, str.length() - 1) - 1;
-            if (N >= goodNum) {
-                sb.append(goodNum * (goodNum + 1)).append("\n");
+        	long gn = 5 * (long) Math.pow(10, str.length() - 1) - 1;
+            if (N >= gn) {
+                sb.append(gn * (gn + 1)).append("\n");
             } else {
                 int origin = N;
                 long digit = 1;
                 long other = 0;
                 while (N > 0) {
-                    final long a = N % 10;
+                    long a = N % 10;
                     other += (9 - a) * digit;
                     digit *= 10;
                     N /= 10;
