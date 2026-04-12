@@ -29,7 +29,6 @@ public class Main_21318_피아노체조 {
         	sum[i] += sum[i-1] + arr[i];
         }
         
-        
         StringBuilder sb = new StringBuilder();
         int query = Integer.parseInt(br.readLine());
         for(int q = 0; q < query; q++) {
