@@ -1,110 +1,123 @@
 package Graph.BFS;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main_2536_버스갈아타기 {
-    static int m, n, k;
-    static Bus[] buses;
+	static int row, col, busCnt;
+	static Queue<Bus> bus = new ArrayDeque<>();
+	
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		row = Integer.parseInt(st.nextToken());
+		col = Integer.parseInt(st.nextToken());
+		
+		busCnt = Integer.parseInt(br.readLine());
+		
+		for(int i = 0; i < busCnt; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int idx = Integer.parseInt(st.nextToken());
+			int sx = Integer.parseInt(st.nextToken());
+			int sy = Integer.parseInt(st.nextToken());
+			int ex = Integer.parseInt(st.nextToken());
+			int ey = Integer.parseInt(st.nextToken());
+			
+			bus.offer(new Bus(idx, sx, sy, ex, ey));
+		}
+		
+		st = new StringTokenizer(br.readLine(), " ");
+		int sx = Integer.parseInt(st.nextToken());
+		int sy = Integer.parseInt(st.nextToken());
+		int ex = Integer.parseInt(st.nextToken());
+		int ey = Integer.parseInt(st.nextToken());
+		
+		bfs(sx, sy, ex, ey);
+	}
+	
+	private static void bfs(int sx, int sy, int ex, int ey) {
+		Queue<Bus> q = new ArrayDeque<>();
+		
+		int size = bus.size();
+		for(int i = 0; i < size; i++) {
+			Bus curr = bus.poll();
+			if(isInline(sx, sy, curr)) {
+				q.offer(curr);
+			} else {
+				bus.offer(curr);
+			}
+		}
+		
+		while(!q.isEmpty()) {
+			Bus poll = q.poll();
+			
+			if(isInline(ex, ey, poll)) {
+				System.out.println(poll.trans);
+				return;
+			}
+			
+			size = bus.size();
+			for(int i = 0; i < size; i++) {
+				Bus target = bus.poll();
+				
+				if(isIntersect(poll, target)) {
+					target.trans = poll.trans+1;
+					q.offer(target);
+				} else {
+					bus.offer(target);
+				}
+			}
+		}
+	}
+	
+	private static boolean isInline(int x, int y, Bus b) {
+	    if(b.sx == b.ex) {
+	        return x == b.sx && y >= b.sy && y <= b.ey;
+	    }
+	    else {
+	        return y == b.sy && x >= b.sx && x <= b.ex;
+	    }
+	}
+	
+	private static boolean isIntersect(Bus a, Bus b) {
+		int ab1 = getCCW(a.sx, a.sy, a.ex, a.ey, b.sx, b.sy);
+		int ab2 = getCCW(a.sx, a.sy, a.ex, a.ey, b.ex, b.ey);
+		int cd1 = getCCW(b.sx, b.sy, b.ex, b.ey, a.sx, a.sy);
+		int cd2 = getCCW(b.sx, b.sy, b.ex, b.ey, a.ex, a.ey);
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		if(ab1 == 0 && ab2 == 0 && cd1 == 0 && cd2 == 0) {
+			return Math.max(Math.min(a.sx, a.ex), Math.min(b.sx, b.ex))
+					<= Math.min(Math.max(a.sx, a.ex), Math.max(b.sx, b.ex))
+				&& Math.max(Math.min(a.sy, a.ey), Math.min(b.sy, b.ey))
+					<= Math.min(Math.max(a.sy, a.ey), Math.max(b.sy, b.ey));
+		}
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        m = Integer.parseInt(st.nextToken());
-        n = Integer.parseInt(st.nextToken());
+		return ab1 * ab2 <= 0 && cd1 * cd2 <= 0;
+	}
+	
+	private static int getCCW(int x1, int y1, int x2, int y2, int x3, int y3) {
+		long result = (long)(x2 - x1) * (y3 - y1) - (long)(y2 - y1) * (x3 - x1);
+		
+		if(result > 0) return 1;
+		if(result < 0) return -1;
+		return 0;
+	}
 
-        k = Integer.parseInt(br.readLine());
-        buses = new Bus[k + 1];
-
-        for (int i = 0; i < k; i++) {
-            st = new StringTokenizer(br.readLine());
-            int idx = Integer.parseInt(st.nextToken());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            buses[idx] = new Bus(idx, x1, y1, x2, y2);
-        }
-
-        st = new StringTokenizer(br.readLine());
-        int sx = Integer.parseInt(st.nextToken());
-        int sy = Integer.parseInt(st.nextToken());
-        int dx = Integer.parseInt(st.nextToken());
-        int dy = Integer.parseInt(st.nextToken());
-
-        bfs(sx, sy, dx, dy);
-    }
-
-    private static void bfs(int sx, int sy, int dx, int dy) {
-        Queue<Integer> q = new ArrayDeque<>();
-        boolean[] visited = new boolean[k + 1];
-        int[] dist = new int[k + 1];
-
-        for (int i = 1; i <= k; i++) {
-            if (isInline(sx, sy, buses[i])) {
-                q.offer(i);
-                visited[i] = true;
-                dist[i] = 1;
-            }
-        }
-
-        while (!q.isEmpty()) {
-            int cur = q.poll();
-            Bus now = buses[cur];
-
-            if (isInline(dx, dy, now)) {
-                System.out.println(dist[cur]);
-                return;
-            }
-
-            for (int i = 1; i <= k; i++) {
-                if (visited[i]) continue;
-                if (isIntersect(now, buses[i])) {
-                    visited[i] = true;
-                    dist[i] = dist[cur] + 1;
-                    q.offer(i);
-                }
-            }
-        }
-    }
-
-    private static boolean isInline(int x, int y, Bus b) {
-        if (b.sx == b.ex) {
-            return x == b.sx && b.sy <= y && y <= b.ey;
-        } else {
-            return y == b.sy && b.sx <= x && x <= b.ex;
-        }
-    }
-
-    private static boolean isIntersect(Bus a, Bus b) {
-        if (a.sx == a.ex && b.sx == b.ex) {
-            if (a.sx != b.sx) return false;
-            return !(a.ey < b.sy || b.ey < a.sy);
-        }
-
-        if (a.sy == a.ey && b.sy == b.ey) {
-            if (a.sy != b.sy) return false;
-            return !(a.ex < b.sx || b.ex < a.sx);
-        }
-
-        Bus v = (a.sx == a.ex) ? a : b;
-        Bus h = (a.sy == a.ey) ? a : b;
-
-        return h.sx <= v.sx && v.sx <= h.ex &&
-               v.sy <= h.sy && h.sy <= v.ey;
-    }
-
-    static class Bus {
-        int idx, sx, sy, ex, ey;
-
-        Bus(int idx, int x1, int y1, int x2, int y2) {
-            this.idx = idx;
-            this.sx = Math.min(x1, x2);
-            this.sy = Math.min(y1, y2);
-            this.ex = Math.max(x1, x2);
-            this.ey = Math.max(y1, y2);
-        }
-    }
+	static class Bus {
+		int idx, sx, sy, ex, ey, trans;
+		
+		public Bus(int idx, int sx, int sy, int ex, int ey) {
+		    this.idx = idx;
+		    this.sx = Math.min(sx, ex);
+		    this.sy = Math.min(sy, ey);
+		    this.ex = Math.max(sx, ex);
+		    this.ey = Math.max(sy, ey);
+		    this.trans = 1;
+		}
+	}
 }
