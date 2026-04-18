@@ -58,7 +58,7 @@ public class Main_34218_숭고한마법학교 {
 			int[] poll = q.pollFirst();
 			
 			if(poll[3] >= cost[poll[0]][poll[1]]) continue;
-			
+			System.out.println(poll[0]+" "+poll[1]);
 			if(poll[0] == ex && poll[1] == ey) {
 				System.out.println(poll[3]);
 				return;
@@ -74,7 +74,7 @@ public class Main_34218_숭고한마법학교 {
 				
 				int ns = matrix[nx][ny] == matrix[poll[0]][poll[1]] ? poll[3] : poll[3] + 1;
 				int nc = matrix[nx][ny] ? poll[2] : poll[2] + 1;
-				if(ns > 1 || cost[nx][ny] <= nc) continue;
+				if(ns > 2 || cost[nx][ny] <= nc) continue;
 				
 				if(matrix[nx][ny] == matrix[poll[0]][poll[1]]) {
 					if(matrix[nx][ny]) {
