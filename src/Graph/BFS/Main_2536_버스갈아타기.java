@@ -1,7 +1,10 @@
 package Graph.BFS;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main_2536_버스갈아타기 {
     static int m, n, k;
